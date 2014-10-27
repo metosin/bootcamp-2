@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src/clj"/>
+	<classpathentry kind="src" path="src/cljs"/>
+	<classpathentry kind="src" path="src/cljx"/>
+	<classpathentry kind="src" path="test/clj"/>
+	<classpathentry kind="src" path="dev-resources"/>
+	<classpathentry kind="src" path="resources"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="ccw.LEININGEN_CONTAINER"/>
+	<classpathentry kind="output" path="target/classes"/>
+</classpath>

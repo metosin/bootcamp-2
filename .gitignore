@@ -1,0 +1,10 @@
+/target/
+generated
+pom.xml
+pom.xml.asc
+*.jar
+*.class
+/.lein-*
+/.nrepl-port
+~$*
+.settings
