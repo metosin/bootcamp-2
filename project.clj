@@ -27,10 +27,9 @@
                  [org.seleniumhq.selenium/selenium-java "2.42.2"]
                  [org.seleniumhq.selenium/selenium-remote-driver "2.42.0"]
                  ]
-  :source-paths ["src/clj"]
+  :source-paths ["target/generated/clj" "src/clj"]
   :test-paths ["test/clj"]
-  :profiles {:dev {:source-paths ["generated/clj" "src/clj"]
-                   :dependencies [[midje "1.6.3"]
+  :profiles {:dev {:dependencies [[midje "1.6.3"]
                                   [clj-webdriver "0.6.1" :exclusions [org.clojure/core.cache]]]
                    :plugins [[com.keminglabs/cljx "0.4.0"]
                              [lein-cljsbuild "1.0.3"]
@@ -38,19 +37,18 @@
                              [lein-midje "3.1.3"]]
                    :cljx {:builds [{:rules :clj
                                     :source-paths ["src/cljx"]
-                                    :output-path "generated/clj"}
+                                    :output-path "target/generated/clj"}
                                    {:rules :cljs
                                     :source-paths ["src/cljx"]
-                                    :output-path "generated/cljs"}]}
+                                    :output-path "target/generated/cljs"}]}
                    :pedantic? false}
-             :uberjar {:source-paths ["generated/clj" "src/clj"]
-                       :main hello
+             :uberjar {:main hello
                        :aot [hello]}}
-  :cljsbuild {:builds {:dev {:source-paths ["generated/cljs" "src/cljs"]
+  :cljsbuild {:builds {:dev {:source-paths ["target/generated/cljs" "src/cljs"]
                              :compiler {:output-to "resources/bootcamp.js"
                                         :output-dir "target/js/out-dev"
                                         :optimizations :none}}
-                       :dist {:source-paths ["generated/cljs" "src/cljs"]
+                       :dist {:source-paths ["target/generated/cljs" "src/cljs"]
                               :compiler {:output-to "resources/bootcamp.js"
                                          :output-dir "target/js/out-prod"
                                          :optimizations :advanced}}}}
