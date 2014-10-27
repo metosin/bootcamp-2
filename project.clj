@@ -29,7 +29,6 @@
                    :plugins [[lein-midje "3.1.3"]
                              [lein-cljsbuild "1.0.3"]
                              [com.keminglabs/cljx "0.4.0"]
-                             [lein2-eclipse "2.0.0"]                             
                              [lein-deps-tree "0.1.2"]]
                    :cljx {:builds [{:rules :clj
                                     :source-paths ["src/cljx"]
