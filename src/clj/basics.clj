@@ -42,6 +42,7 @@
 (keyword? :foo)             ;=> true
 (keyword? "foo")            ;=> false
 (keyword? (keyword "foo"))  ;=> true
+
 ;
 ; Symbols:
 ;
@@ -66,11 +67,12 @@ answer                      ;=> 42
 
 ; Regular expressions:
 
-(type #"foo\sbar")          ;=> java.util.regex.Pattern
+(type #"foo\s+bar")         ;=> java.util.regex.Pattern
 
-; nil
+; nil: Same as 'null' in Java
 
-nil    ; Same as 'null' in Java
+
+nil                         ;=> nil
 
 ; Functions:
 
