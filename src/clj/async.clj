@@ -1,5 +1,5 @@
 (ns async
-  (:require [clojure.core.async :refer [go chan <! <!! >! put! alt! alts! timeout close!]]))
+  (:require [clojure.core.async :refer [go chan <! <!! >! put! take! alt! alts! timeout close!]]))
 
 ;; FIXME: Vim won't output prints if we don't block...?
 
@@ -50,8 +50,17 @@
        (println "Hello")))
 
 ;; Turning synchronous stuff to async
+; put!, use from callbacks etc. to put stuff into channel from outside go block
 (let [c (chan)]
-  )
+  (<!! (go (println (<! c))))
+  ; TODO: Do something
+  (put! c "foobar"))
+
+; take!, use if (for some reason) you need to execute callback when value is put into a channel
+(let [c (chan)]
+  (take! c (fn [v]
+             (println "Got" v)))
+  (<!! (go (>! c 5))))
 
 ;; Event-loop
 
@@ -76,5 +85,11 @@
   (<!! (go
          (<! (timeout 200))
          (close! ctrl))))
+
+;; Lisätehtäviä:
+; Map, (chan 10 xform another-chan)
+; Merge, luo kanavan joka sisältää usean muun kanavan sisällön
+; Mult, mahdollistaa kopioiden luonnin yhdestä kanavasta (koska take ottaa arvoja pois kanavasta)
+; Mix, yhdistää useamman kanavan yhteen (dynaamisesti)
 
 ;; API Docs: http://clojure.github.io/core.async/
