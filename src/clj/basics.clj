@@ -119,3 +119,22 @@ nil                         ;=> nil
 
 (doubler 42)  ;=> 84
 (tripler 42)  ;=> 126
+
+;;
+;; if, let
+;;
+
+(println (if true
+           "seems ok"))
+;=> stdout:  seems ok
+
+(println (if false
+           "seems weird"
+           "still ok"))
+;=> stdout: seems ok
+
+(let [message "Hello,"
+      user    "<your name here>"]
+  (println message user))
+;=> stdout: Hello, <your name here>
+

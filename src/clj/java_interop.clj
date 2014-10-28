@@ -99,6 +99,7 @@
     (.setContentPane (make-x-component java.awt.Color/BLACK))
     (.setBounds 32 32 700 900)
     (.setDefaultCloseOperation JFrame/DISPOSE_ON_CLOSE)
+    (.setAlwaysOnTop true)
     (.setVisible true)))
 
 ; (def f (open-frame "Hello"))

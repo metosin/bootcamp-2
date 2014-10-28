@@ -46,3 +46,15 @@
 
 ;(fact
 ;  (get-greeting "world") => "Hello, world!")
+
+;;
+;; if, let
+;;
+
+(defn user-is-root [username]
+  ; implement this
+  )
+
+(fact
+  (user-is-root "root") => truthy
+  (user-is-root "pena") => falsey)
