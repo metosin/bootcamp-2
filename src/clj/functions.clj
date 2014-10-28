@@ -30,3 +30,10 @@
 (map replace-spaces (map s/upper-case (map :name books)))  ;=> ("THE-JOY-OF-CLOJURE" "ERLANG-PROGRAMMING"...
 
 (map (comp replace-spaces s/upper-case :name) books)       ;=> ("THE-JOY-OF-CLOJURE" "ERLANG-PROGRAMMING"...
+
+; apply:
+; ------
+
+(+ 1 2 3)          ;=> 6
+;(+ [1 2 3])        ;=> ClassCastException Cannot cast clojure.lang.PersistentVector to java.lang.Number
+(apply + [1 2 3])  ;=> 6
