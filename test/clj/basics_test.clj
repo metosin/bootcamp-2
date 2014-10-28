@@ -6,7 +6,7 @@
 ;;
 
 (fact
-  (+ 1 2)   => 3
+  (+ 1 2)   => 4
   (- 44 2)  => 42)
 
 ;;
@@ -45,16 +45,18 @@
   )
 
 ;(fact
-;  (get-greeting "world") => "Hello, world!")
+;  (get-greeting "world")  => "Hello, world!"
+;  (get-greeting "")       => "Hello, !"
+;  (get-greeting nil)      => "Hello, !")
 
 ;;
-;; if, let
+;; if
 ;;
 
 (defn user-is-root [username]
-  ; implement this
   )
 
 (fact
-  (user-is-root "root") => truthy
-  (user-is-root "pena") => falsey)
+  (user-is-root "root")  => truthy
+  (user-is-root "pena")  => falsey
+  (user-is-root nil)     => falsey)

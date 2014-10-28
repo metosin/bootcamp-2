@@ -10,24 +10,20 @@
 ; Literals:
 ; ---------
 
+;
 ; Scalar literals:
+;
 
 (type 1337)              ;=> java.lang.Long
 (type 3.14159)           ;=> java.lang.Double
 (type true)              ;=> java.lang.Boolean
 (type "Hello, world")    ;=> java.lang.String
 (type \m)                ;=> java.lang.Character
+(type #"foo\s+bar")      ;=> java.util.regex.Pattern
 
-; Collection literals:
+; nil: Same as 'null' in Java
 
-[1 2 3]
-
-'(3.14159 2.71828 1.41421)
-
-{"greeting"   "Hello"
- "object"     "world"}
-
-#{\newline \return \space}
+nil                      ;=> nil
 
 ;
 ; Keywords:
@@ -43,6 +39,15 @@
 (keyword? "foo")            ;=> false
 (keyword? (keyword "foo"))  ;=> true
 
+; = function uses Object.equals
+(= "foobar" (str "foo" "bar"))                     ;=> true
+
+; identical? uses Java == operator:
+(identical? "foobar" (str "foo" "bar"))            ;=> false
+
+; Equal keywords are always identical:
+(identical? :foobar (keyword (str "foo" "bar")))   ;=> true
+
 ;
 ; Symbols:
 ;
@@ -51,36 +56,23 @@
 ; - Evaluate to that 'something'
 
 ; uncomment and evaluate this:
-; bar                         ;=> CompilerException java.lang.RuntimeException: Unable to resolve symbol: bar in this context
+; answer                      ;=> CompilerException java.lang.RuntimeException: Unable to resolve symbol: bar in this context
 
-(quote bar)                 ;=> bar
-'bar                        ;=> bar
-(symbol? 'bar)              ;=> true
+(quote answer)              ;=> answer
+'answer                     ;=> answer
 
 ; Bind "something" to a namespace so that symbol can refer to it
 
 (def answer 42)
 
-'answer                     ;=> answer
-(symbol? 'answer)           ;=> true
 answer                      ;=> 42
-
-; Regular expressions:
-
-(type #"foo\s+bar")         ;=> java.util.regex.Pattern
-
-; nil: Same as 'null' in Java
-
-
-nil                         ;=> nil
 
 ; Functions:
 
 (def say-hello (fn [your-name]
                  (println "Hello," your-name)))
 
-(say-hello "world")
-;=> stdout: "Hello, world"
+(say-hello "world")    ; stdout: "Hello, world"
 
 ; Conveniency macro for (def func-name (fn [args] body))
 
@@ -95,13 +87,10 @@ nil                         ;=> nil
   ([your-name]
     (println "Hello," your-name)))
 
-(say-hello)
-;=> stdout: "Hello, world!"
+(say-hello)          ; stdout: "Hello, world!"
+(say-hello "foo")    ; stdout: "Hello, foo"
 
-(say-hello "foo")
-;=> stdout: "Hello, foo"
-
-; Last thing evaluated in funcvtion body is the return value:
+; Last thing evaluated in function is the return value:
 
 (defn multiply-by-2 [some-value]
   (* some-value 2))
@@ -121,20 +110,34 @@ nil                         ;=> nil
 (tripler 42)  ;=> 126
 
 ;;
-;; if, let
+;; if - conditional evaluation:
 ;;
 
 (println (if true
            "seems ok"))
-;=> stdout:  seems ok
+; stdout:  seems ok
 
 (println (if false
            "seems weird"
            "still ok"))
-;=> stdout: seems ok
+; stdout: still ok
+
+;;
+;; let - create lexical bindings:
+;;
 
 (let [message "Hello,"
       user    "<your name here>"]
   (println message user))
-;=> stdout: Hello, <your name here>
+; stdout: Hello, <your name here>
 
+(let [a "a"
+      b "b"]
+  (println "1:" a b)
+  (let [b "updated"]
+    (println "2:" a b))
+  (println "3:" a b))
+; stdout:
+;   1: a b
+;   2: a updated
+;   3: a b
