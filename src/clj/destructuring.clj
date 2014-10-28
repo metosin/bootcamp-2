@@ -44,3 +44,12 @@
   [status body])
 ;=> [404 "not found"]
 
+;
+; Works with functions:
+;
+
+(defn long-book? [book]
+  (> (:pages book) 200))
+
+(defn long-book? [{pages :pages}]
+  (> pages 200))
