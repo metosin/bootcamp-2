@@ -13,7 +13,6 @@
 ;  (get-name {:name "foo"}) => "foo"
 ;  (get-name {}             => "default"))
 
-
 (def metosin {:name "Metosin"
               :address {:street "Kesksutori 7 E 37"
                         :city   "Tampere"}})
@@ -30,15 +29,15 @@
 ;; ---------------------------
 ;;
 
-(defn set-home-page [company home-page]
+(defn with-home-page [company home-page]
   )
 
 ;(fact
-;  (:url (set-home-page metosin "http://metosin.fi")) => "http://metosin.fi")
+;  (:url (with-home-page metosin "http://metosin.fi")) => "http://metosin.fi")
 
-(defn set-zip [company zip]
+(defn with-zip [company zip]
   ; hint: http://clojure.github.io/clojure/clojure.core-api.html#clojure.core/assoc-in
   )
 
 ;(fact
-;  (get-in (set-zip metosin "33100") [:address :zip]) => "33100")
+;  (get-in (with-zip metosin "33100") [:address :zip]) => "33100")

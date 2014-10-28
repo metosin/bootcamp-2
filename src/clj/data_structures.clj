@@ -11,33 +11,39 @@
 
 (def some-primes [2 3 5 7 11 13 17 19])
 
+(count some-primes)        ;=> 8
 (nth some-primes 0)        ;=> 2
-(peek some-primes)         ;=> 19
-(pop some-primes)          ;=> [2 3 5 7 11 13 17]
-(subvec some-primes 3)     ;=> [7 11 13 17 19]
-(subvec some-primes 3 5)   ;=> [7 11]
-
+(nth some-primes 1)        ;=> 3
 (conj some-primes 23)      ;=> [2 3 5 7 11 13 17 19 23]
+some-primes                ;=> [2 3 5 7 11 13 17 19]
 
 (vector? some-primes)      ;=> true
 (vector 1 2 3)             ;=> [1 2 3]
 
+; See http://clojure.org/cheatsheet
+
 ; List:
 
-(def some-facts '(1 1 2 6 24 120))
+(def some-happy-numbers '(1 7 10 13 19 23 28))  ; https://en.wikipedia.org/wiki/Happy_number
 
-(nth some-facts 0)        ;=> 1
-(peek some-facts)         ;=> 1
-(pop some-facts)          ;=> (1 2 6 24 120)
+(nth some-happy-numbers 0)   ;=> 1
+(nth some-happy-numbers 1)   ;=> 7
+(peek some-happy-numbers)    ;=> 1
+(pop some-happy-numbers)     ;=> (7 10 13 19 23 28)
 
-(conj some-facts 0)       ;=> (0 1 1 2 6 24 120)
+(conj some-happy-numbers 0)  ;=> (0 10 13 19 23 28)
 
-(list? some-facts)        ;=> true
-(list 1 2 3)              ;=> (1 2 3)
+(list? some-happy-numbers)   ;=> true
+(list 1 2 3)                 ;=> (1 2 3)
+
+; Pay attention:
+
+(conj [1 2 3]  0)   ;=> [1 2 3 0]
+(conj '(1 2 3) 0)   ;=> (0 1 2 3)
 
 ; Maps:
 
-(def person {:name  "<your name here>"
+(def person {:name  "Jarppe"
              :email "foo@bar.com"})
 
 person                               ;=> {:email "foo@bar.com", :name "<your name here>"}
@@ -90,18 +96,21 @@ person                               ;=> {:email "foo@bar.com", :name "<your nam
 ;
 
 ; mental map:
-;   Java:                Clojure:
-;   java.util.List       list
-;   java.util.Iterator   seq
+;   Clojure: | Java:              
+;   -------- |----------------
+;   list     | java.util.List
+;   seq      | java.util.Iterator
 
-(type [1 2 3])                 ;=> clojure.lang.PersistentVector
-(type (seq [1 2 3]))           ;=> clojure.lang.PersistentVector$ChunkedSeq
+; Convert to seq
 
-(count [1 2 3])                ;=> 3 in O(1)
-(count (seq [1 2 3]))          ;=> 3 in O(n)
-
-(seq [1 2 3])                  ;=> (1 2 3)
-(seq [])                       ;=> nil
+(seq [1 2 3])                    ;=> (1 2 3)       
+(seq '(1 2 3))                   ;=> (1 2 3)
+(seq {:name "foo" :role "bar"})  ;=> ([:role "bar"] [:name "foo"])
+(seq #{\a \e \i \o \u \y})       ;=> (\a \e \i \o \u \y)
+(seq "hello")                    ;=> (\h \e \l \l \o)
+(seq [])                         ;=> nil
+(seq '())                        ;=> nil
+(seq nil)                        ;=> nil
 
 ; core functions that work with data-structures:
 ;   (func <data-structure> args)
@@ -110,14 +119,16 @@ person                               ;=> {:email "foo@bar.com", :name "<your nam
 
 ; For example:
 
-(conj [1 2] 3)                 ;=> [1 2 3]
-(cons 3 [1 2])                 ;=> (3 1 2)
+(conj [] 1)                 ;=> [1]
+(cons 1 '())                ;=> (1)
 
 ; Common functions that work with seq:
 
-(first (seq [1 2 3]))          ;=> 1
-(rest (seq [1 2 3]))           ;=> (2 3)
-(next (seq [1 2 3]))           ;=> (2 3)
+(def happy (seq some-happy-numbers))
+
+(first happy)  ;=> 1
+(rest happy)   ;=> (7 10 13 19 23 28)
+(next happy)   ;=> (7 10 13 19 23 28)
 
 (first (seq [1]))              ;=> 1
 (rest (seq [1]))               ;=> ()
