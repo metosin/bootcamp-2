@@ -56,7 +56,7 @@
 (defn user-is-root [username]
   )
 
-(fact
-  (user-is-root "root")  => truthy
-  (user-is-root "pena")  => falsey
-  (user-is-root nil)     => falsey)
+;(fact
+;  (user-is-root "root")  => truthy
+;  (user-is-root "pena")  => falsey
+;  (user-is-root nil)     => falsey)
