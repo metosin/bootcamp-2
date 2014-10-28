@@ -1,8 +1,4 @@
 (defproject bootcamp "0.0.0-SNAPSHOT"
-  :description "Metosin Bootcamp"
-  :url "https://github.com/metosin/bootcamp-2"
-  :license {:name "Copyrights Metosin Oy 2014, All rights reserved"
-            :url "http://metosin.fi/"}
   :dependencies [[cljs-ajax "0.3.3"]
                  [clj-time "0.8.0"]
                  [com.fasterxml.jackson.core/jackson-core "2.3.2"]
