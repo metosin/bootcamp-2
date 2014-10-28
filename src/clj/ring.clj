@@ -28,8 +28,19 @@
 ;; Ring routing:
 ;;
 
+(defn log-requests [handler]
+  (fn [request]
+    (pprint request)
+    (handler request)))
+
+(defn frame-options [handler]
+  (fn [request]
+    (assoc-in (handler request) [:headers "x-frame-options"] "SAMEORIGIN")))
+
 (defn handle-request [request]
   {:status 200
-   :body "Hello, world!"})
+   :body   "Hello, world!"})
 
-; (start-server handle-request)
+(def app (frame-options (log-requests handle-request)))
+
+(start-server app)
