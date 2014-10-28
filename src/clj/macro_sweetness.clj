@@ -82,7 +82,7 @@
 ;; It took 18 years to make it.
 ;;
 
-;; Same idion in Clojure:
+;; Same idiom in Clojure:
 
 ; (let [resource ...make-resource...]
 ;   (try
