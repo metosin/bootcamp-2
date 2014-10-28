@@ -16,7 +16,7 @@
 
 (filter clojure-book? books)                                  ;=> ({:name "The Joy of Clojure", :pages 328, :langs #{:clojure}} {:name "Clojure Data....
 
-; Step 3: filter long books
+; Step 2: filter long books
 
 (defn long-book? [book]
   (> (:pages book) 300))
@@ -50,7 +50,8 @@
 
 (macroexpand '(->> [1 2 3]
                    (filter odd?)
-                   (map inc)))    ;=> (map inc (filter odd? [1 2 3]))
+                   (map inc)))
+;=> (map inc (filter odd? [1 2 3]))
 
 ; ->> puts previous result to _last_ element in next expression
 ; ->  puts previous result to _first_ element in next expression
