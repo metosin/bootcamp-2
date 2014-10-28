@@ -9,7 +9,6 @@
 ; Filter books that have less than 300 pages
 
 (defn short? [book]
-  ; Implement this
   )
 
 ;(fact
@@ -18,13 +17,21 @@
 ; Filter books that speak about Clojure:
 
 (defn clojure-book? [book]
-  ; Implement this
   )
 
 ;(fact
 ;  (count (filter clojure-book? books)) => 3
-;  (filter clojure-book? books) => (contains {:name "The Joy of Clojure", :langs #{:clojure}, :pages  328}))
+;  (filter clojure-book? books) => (contains
+;                                    {:name   "The Joy of Clojure"
+;                                     :langs  #{:clojure}
+;                                     :pages  328}))
 
+(defn short-clojure-books []
+  )
+
+;(fact
+;  (count (short-clojure-books))         => 1
+;  (:name (first (short-clojure-books))) => "Programming Concurrency on the JVM")
 
 ;; map:
 ;; ----
@@ -32,21 +39,22 @@
 ; Book names:
 
 (defn book->name [book]
-  ; Your code here:
   )
 
 ;(fact
 ;  (map book->name books) => (contains ["The Joy of Clojure" "Erlang Programming"]))
-
-;; Bonus: combine the two
-;; Get the names of Clojure books:
 
 (defn clojure-book-names []
   ; Return a seq of names of books that are about clojure
   )
 
 ;(fact
-;  (clojure-book-names) => (just ["The Joy of Clojure" "Programming Concurrency on the JVM" "Clojure Data Analysis Cookbook"] :in-any-order))
+;  (clojure-book-names)
+;  => (just
+;       ["The Joy of Clojure"
+;        "Programming Concurrency on the JVM"
+;        "Clojure Data Analysis Cookbook"]
+;       :in-any-order))
 
 ;; reduce:
 ;; -------
@@ -67,12 +75,10 @@
 
 ; Implement filter and map functions using reduce:
 
-(defn my-filter [pred? s]
-  ; do this without calling clojure.core/filter
+(defn my-filter [pred? elements]
   )
 
-(defn my-map [func s]
-  ; do this without calling clojure.core/map
+(defn my-map [mapper elements]
   )
 
 ;(fact
