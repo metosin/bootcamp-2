@@ -43,7 +43,7 @@ some-primes                ;=> [2 3 5 7 11 13 17 19]
 
 ; Maps:
 
-(def person {:name  "Jarppe"
+(def person {:name  "<your name here>"
              :email "foo@bar.com"})
 
 person                               ;=> {:email "foo@bar.com", :name "<your name here>"}
