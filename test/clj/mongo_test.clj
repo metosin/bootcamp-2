@@ -13,7 +13,7 @@
 #_
 (facts books
   (let [{:keys [_id] :as book}
-        (insert-book db (first books))]
+        (insert-book (first books))]
     (dissoc book :_id) => valid-book
 
-    (get-book db _id) => book))
+    (get-book _id) => book))

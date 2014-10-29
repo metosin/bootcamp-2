@@ -6,6 +6,8 @@
             [schema :refer :all])
   (:import [org.bson.types ObjectId]))
 
+; Monger API reference: http://reference.clojuremongodb.info/
+
 ; Simple implementation: one connection per project
 (let [m (mg/connect-via-uri (or (System/getenv "MONGO_URI") "mongodb://127.0.0.1/bootcamp-2"))]
   (def conn (:conn m))
@@ -28,27 +30,26 @@
   (get authors key))
 
 (s/defn ^:always-validate insert-book :- MongoBook
-  [db
-   book :- Book]
+  [book :- Book]
   nil)
 
 (s/defn ^:always-validate get-book
   ; Extra: Mongo looses some types (sets, keywords)
   ; remove following comment and use coercion to coerce data back to proper types
   ; :- MongoBook
-  [db
-   id :- s/Str]
+  [id :- s/Str]
   nil)
 
 (defn get-books
-  [db]
-  (mc/find-maps :books))
+  []
+  ;(mc/find-maps db :books)
+  books)
 
 (comment
   (get-author :fogus)
-  (insert-book db {})
-  (def ^:private _id (:_id (insert-book db (second books))))
+  (insert-book {})
+  (def ^:private _id (:_id (insert-book (second books))))
   _id
-  (get-book db _id)
+  (get-book _id)
 
   (mc/drop db :books))

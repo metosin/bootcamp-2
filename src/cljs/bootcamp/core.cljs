@@ -1,4 +1,4 @@
-(ns bootcamp-ui.core
+(ns bootcamp.core
   (:require [reagent.core :as reagent :refer [atom]]))
 
 (def timer (atom (js/Date.)))

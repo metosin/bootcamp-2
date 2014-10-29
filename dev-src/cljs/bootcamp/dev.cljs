@@ -1,5 +1,5 @@
-(ns bootcamp-ui.dev
-  (:require [bootcamp-ui.core :as core]
+(ns bootcamp.dev
+  (:require [bootcamp.core :as core]
             [figwheel.client :as figwheel :include-macros true]
             [cljs.core.async :refer [put!]]
             [weasel.repl :as weasel]))
