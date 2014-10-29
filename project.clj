@@ -54,8 +54,7 @@
                                                      cljx.repl-middleware/wrap-cljx]}
 
                    :dependencies [[midje "1.6.3"]]
-                   :plugins [[com.keminglabs/cljx "0.4.0"]
-                             [lein-figwheel "0.1.4-SNAPSHOT"]
+                   :plugins [[lein-figwheel "0.1.4-SNAPSHOT"]
                              [lein-cljsbuild "1.0.3"]
                              [lein-deps-tree "0.1.2"]
                              [lein-midje "3.1.3"]

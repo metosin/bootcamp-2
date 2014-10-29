@@ -1,39 +1,37 @@
 (ns bootcamp.core
-  (:require [reagent.core :as reagent :refer [atom]]))
+  (:require-macros [cljs.core.async.macros :refer [go]])
+  (:require [reagent.core :as reagent :refer [atom]]
+            [cljs.core.async :refer [<!]]
+            [cljs-http.client :as http]
+            [schema2 :as schema]))
 
-(def timer (atom (js/Date.)))
-(def time-color (atom "#f34"))
+; Feature ideas:
+; - filter books?
+; - edit books inplace
+; - use schemas to check if book being edited is valid
 
-(defn update-time [time]
-  ;; Update the time every 1/10 second to be accurate...
-  (js/setTimeout #(reset! time (js/Date.)) 100))
+(def books (atom []))
 
-(defn greeting [message]
-  [:h1 message])
+(go
+  (let [res (<! (http/get "/books"))]
+    (if (= (:status res) 200)
+      (reset! books (:body res)))))
 
-(defn clock []
-  (update-time timer)
-  (let [time-str (-> @timer .toTimeString (clojure.string/split " ") first)]
-    [:div.example-clock
-     {:style {:color @time-color}}
-     time-str]))
-
-(defn color-input []
-  [:div.color-input
-   "Time color: "
-   [:input {:type "text"
-            :value @time-color
-            :on-change #(reset! time-color (-> % .-target .-value))}]])
-
-(defn simple-example []
+(defn one-book [book]
   [:div
-   [greeting "Hello world, it is now"]
-   [clock]
-   [color-input]])
+   [:h2 (:name book)]
+   [:p "something"]])
+
+(defn library []
+  [:div
+   [:h1 "Library!"]
+   (for [book @books]
+     ^{:key (:_id book)} [one-book book])])
 
 (defn main []
   (reagent/render-component
-    (fn [] [simple-example])
+    (fn []
+      [library])
     (.-body js/document)))
 
 (main)
