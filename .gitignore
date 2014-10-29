@@ -11,3 +11,4 @@ pom.xml.asc
 resources/public/js
 .idea
 bootcamp.iml
+src/clj/secret.clj

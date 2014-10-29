@@ -50,6 +50,14 @@
                    :langs s/Str
                    :pages s/Str})
 
+(s/defschema Author {:fname s/Str
+                     :lname s/Str})
+
+(s/defschema Book {:name s/Str
+                   :langs #{s/Keyword}
+                   :pages s/Int
+                   :authors [s/Keyword]})
+
 ; More, coercions:
 (defn str->keyword-matcher[schema]
   (if (= schema s/Keyword)
