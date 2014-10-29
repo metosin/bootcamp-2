@@ -8,3 +8,6 @@ pom.xml.asc
 /.nrepl-port
 ~$*
 .settings
+resources/public/js
+.idea
+bootcamp.iml
