@@ -8,7 +8,7 @@
 ;; - Import
 ;; - Instantiate Java objects.
 ;; - Invoke methods on Java objects
-;; - Clojure utils: class, inetance?, doto
+;; - Clojure utils: class, instance?, doto
 ;; - exception handling
 ;; - Create objects that implement Java interfaces
 ;;

@@ -11,7 +11,7 @@
 
 ;(fact
 ;  (get-name {:name "foo"}) => "foo"
-;  (get-name {}             => "default"))
+;  (get-name {})            => "default")
 
 (def metosin {:name "Metosin"
               :address {:street "Kesksutori 7 E 37"
