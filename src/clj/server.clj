@@ -12,8 +12,6 @@
             [hiccup.page :refer [html5 include-js include-css]])
   (:gen-class))
 
-(println "dev" is-dev?)
-
 (defn index-page []
   (html
     (html5
