@@ -6,6 +6,7 @@
 (go 5)
 
 ;; Take a value from channel (two !'s -> blocking)
+#_
 (<!! (go 5))
 
 #_

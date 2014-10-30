@@ -11,6 +11,8 @@
 ; - use schemas to check if book being edited is valid
 
 (def books (atom []))
+(comment
+  (reset! books []))
 
 (go
   (let [res (<! (http/get "/books"))]

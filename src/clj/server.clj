@@ -28,7 +28,6 @@
   ; For frontend
   (resources "/")
   (resources "/react" {:root "react"})
-  ; Index - last because the * route
   (GET* "/" req
     (ok (index-page)))
 

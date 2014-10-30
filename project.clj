@@ -50,7 +50,7 @@
                                   :nrepl-middleware [cemerick.piggieback/wrap-cljs-repl
                                                      cljx.repl-middleware/wrap-cljx]}
 
-                   :dependencies [[midje "1.6.3"]]
+                   :dependencies [[midje "1.5.1"]]
                    :plugins [[lein-figwheel "0.1.4-SNAPSHOT"]
                              [lein-cljsbuild "1.0.3"]
                              [lein-deps-tree "0.1.2"]
