@@ -25,6 +25,7 @@
                  [com.andrewmcveigh/cljs-time "0.2.3"]
                  [com.facebook/react "0.11.2"]
                  [reagent "0.4.3"]
+                 [secretary "1.2.1"]
 
                  ; For Cljs workflow: https://github.com/plexus/chestnut
                  [com.cemerick/piggieback "0.1.3"]
