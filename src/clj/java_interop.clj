@@ -1,5 +1,5 @@
 (ns java-interop
-  (:import [javax.swing JFrame JComponent]))
+  (:import [javax.swing JFrame JComponent SwingUtilities]))
 
 ;;
 ;; Java inter-op
@@ -42,7 +42,7 @@
 ; Static methods/fields:
 
 (println "Java version:" (System/getProperty "java.version"))  ;=> "Java version: 1.8.0_20"
-(println "AC/DC: Back in" (java.awt.Color/BLACK))              ;=> AC/DC: Back in #<Color java.awt.Color[r=0,g=0,b=0]>
+(println "AC/DC: Back in" java.awt.Color/BLACK)                ;=> AC/DC: Back in #<Color java.awt.Color[r=0,g=0,b=0]>
 
 ;;
 ;; Exceptions:
@@ -104,6 +104,21 @@
 
 ; (def f (open-frame "Hello"))
 ; (.dispose f)
+
+;;
+;; Bonus: ===================
+;; - update frame when paint-large-x changes
+;;
+
+(defn watch-paint-large-x [f]
+  (add-watch #'paint-large-x
+             :update-frame
+             (fn [_ _ _ _]
+               (SwingUtilities/invokeLater
+                 (fn []
+                   (.repaint f))))))
+
+; (watch-paint-large-x f)
 
 ;;
 ;; Bonus material: type hints
