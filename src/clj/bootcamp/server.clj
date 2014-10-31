@@ -1,6 +1,6 @@
 (ns bootcamp.server
   (:require [clojure.java.io :as io]
-            [dev :refer [is-dev? browser-repl start-figwheel]]
+            [bootcamp.dev :refer [is-dev? browser-repl start-figwheel]]
             [compojure.api.sweet :refer :all]
             [compojure.route :refer [resources]]
             [ring.middleware.reload :as reload]
@@ -10,8 +10,8 @@
             [hiccup.core :refer [html]]
             [hiccup.page :refer [html5 include-js include-css]]
 
-            schema
-            mongo)
+            bootcamp.schema
+            bootcamp.mongo)
   (:gen-class))
 
 (declare index-page)

@@ -1,6 +1,6 @@
 (ns bootcamp.hello-test
   (:require [midje.sweet :refer :all]
-            [hello :as h]))
+            [bootcamp.hello :as h]))
 
 (fact
   (h/hello-world "foo") => "Hello, foo!"

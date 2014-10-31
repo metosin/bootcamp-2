@@ -1,8 +1,8 @@
 (ns bootcamp.schema-test
-  (:require [schema :refer :all]
+  (:require [midje.sweet :refer :all]
             [schema.core :as s]
-            [midje.sweet :refer :all]
-            [util.books :refer :all]))
+            [bootcamp.schema :refer :all]
+            [bootcamp.util.books :refer :all]))
 
 #_
 (facts Author

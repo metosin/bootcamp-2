@@ -1,5 +1,5 @@
 (ns bootcamp.macro-sweetness
-  (:require [util.books :refer [books]]))
+  (:require [bootcamp.util.books :refer [books]]))
 
 ;; Macro sweetness:
 ;; ----------------

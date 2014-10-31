@@ -1,5 +1,5 @@
 (ns bootcamp.working-with-data
-  (:require [data-structures :refer [some-primes planets]]))
+  (:require [bootcamp.data-structures :refer [some-primes planets]]))
 
 ;;
 ;; filter, map, reduce

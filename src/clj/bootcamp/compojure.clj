@@ -2,7 +2,7 @@
   (:require [ring.util.http-response :refer [ok not-found]]
             [schema.core :as sc]
             [compojure.api.sweet :refer :all]
-            [ring :refer [start-server]]))
+            [bootcamp.ring :refer [start-server]]))
 
 (defonce storage (atom {}))
 

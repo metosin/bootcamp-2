@@ -1,6 +1,6 @@
 (ns bootcamp.functions
   (:require [clojure.string :as s]
-            [util.books :refer [books]]))
+            [bootcamp.util.books :refer [books]]))
 
 ;;
 ;; Functions:

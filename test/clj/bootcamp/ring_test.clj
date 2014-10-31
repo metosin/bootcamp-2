@@ -1,6 +1,6 @@
 (ns bootcamp.ring-test
   (:require [midje.sweet :refer :all]
-            [ring :refer :all]))
+            [bootcamp.ring :refer :all]))
 
 (fact
   (let [handler (fn [req] {:status 200})

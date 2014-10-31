@@ -1,6 +1,6 @@
 (ns bootcamp.working-with-data-test
   (:require [midje.sweet :refer :all]
-            [util.books :refer [books]]))
+            [bootcamp.util.books :refer [books]]))
 
 
 ;; filter:

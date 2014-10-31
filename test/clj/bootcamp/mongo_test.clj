@@ -1,7 +1,7 @@
 (ns bootcamp.mongo-test
-  (:require [mongo :refer :all]
-            [util.books :refer :all]
-            [midje.sweet :refer :all]))
+  (:require [midje.sweet :refer :all]
+            [bootcamp.mongo :refer :all]
+            [bootcamp.util.books :refer :all]))
 
 (def valid-book {:name    "The Joy of Clojure"
                  :langs   #{:clojure}

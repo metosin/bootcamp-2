@@ -3,7 +3,7 @@
             [monger.collection :as mc]
             [schema.core :as s]
             [util.books :refer :all]
-            [schema :refer :all])
+            [bootcamp.schema :refer :all])
   (:import [org.bson.types ObjectId]))
 
 ; Monger API reference: http://reference.clojuremongodb.info/
