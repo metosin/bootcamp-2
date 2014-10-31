@@ -1,4 +1,4 @@
-(ns mongo-test
+(ns bootcamp.mongo-test
   (:require [mongo :refer :all]
             [util.books :refer :all]
             [midje.sweet :refer :all]))

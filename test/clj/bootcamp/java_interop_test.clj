@@ -1,4 +1,4 @@
-(ns java-interop-test
+(ns bootcamp.java-interop-test
   (:require [midje.sweet :refer :all]
             [java-interop :refer :all]))
 

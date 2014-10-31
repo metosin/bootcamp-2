@@ -1,4 +1,4 @@
-(ns data-structures-test
+(ns bootcamp.data-structures-test
   (:require [midje.sweet :refer :all]))
 
 ;;

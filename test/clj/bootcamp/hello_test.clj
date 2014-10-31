@@ -1,4 +1,4 @@
-(ns hello-test
+(ns bootcamp.hello-test
   (:require [midje.sweet :refer :all]
             [hello :as h]))
 

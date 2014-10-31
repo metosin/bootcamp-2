@@ -1,4 +1,4 @@
-(ns ring-test
+(ns bootcamp.ring-test
   (:require [midje.sweet :refer :all]
             [ring :refer :all]))
 

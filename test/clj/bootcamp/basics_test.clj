@@ -1,4 +1,4 @@
-(ns basics-test
+(ns bootcamp.basics-test
   (:require [midje.sweet :refer :all]))
 
 ;;

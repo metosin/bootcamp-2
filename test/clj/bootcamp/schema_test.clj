@@ -1,4 +1,4 @@
-(ns schema-test
+(ns bootcamp.schema-test
   (:require [schema :refer :all]
             [schema.core :as s]
             [midje.sweet :refer :all]
