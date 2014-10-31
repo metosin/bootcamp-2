@@ -2,7 +2,7 @@
   (:require [monger.core :as mg]
             [monger.collection :as mc]
             [schema.core :as s]
-            [util.books :refer :all]
+            [bootcamp.util.books :refer :all]
             [bootcamp.schema :refer :all])
   (:import [org.bson.types ObjectId]))
 

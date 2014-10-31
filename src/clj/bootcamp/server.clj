@@ -11,7 +11,8 @@
             [hiccup.page :refer [html5 include-js include-css]]
 
             bootcamp.schema
-            bootcamp.mongo)
+            bootcamp.mongo
+            bootcamp.server)
   (:gen-class))
 
 (declare index-page)
@@ -36,12 +37,12 @@
     :description "RESTful book api"
     (GET* "/books" []
       :summary "Retrieve all books"
-      (ok (mongo/get-books)))
+      (ok (bootcamp.mongo/get-books)))
 
     (POST* "/books" []
       :summary "Create a new book"
-      :body [book schema/Book]
-      (ok (mongo/insert-book {})))
+      :body [book bootcamp.schema/Book]
+      (ok (bootcamp.mongo/insert-book {})))
 
     ; Perhaps something else should be implemented also?
     ))
@@ -50,7 +51,7 @@
 
 (def http-handler
   (if is-dev?
-    (reload/wrap-reload #'server/api)
+    (reload/wrap-reload #'bootcamp.server/api)
     api))
 
 (defn run [& [port]]
