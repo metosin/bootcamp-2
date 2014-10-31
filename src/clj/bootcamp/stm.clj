@@ -1,4 +1,4 @@
-(ns stm)
+(ns bootcamp.stm)
 
 ; package clojure.lang;
 ;

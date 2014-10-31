@@ -1,4 +1,4 @@
-(ns async
+(ns bootcamp.async
   (:require [clojure.core.async :refer [go chan <! <!! >! put! take! alt! alts! timeout close!]]))
 
 ;; Basics - Go block

@@ -1,4 +1,4 @@
-(ns working-with-data
+(ns bootcamp.working-with-data
   (:require [data-structures :refer [some-primes planets]]))
 
 ;;

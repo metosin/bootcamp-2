@@ -1,4 +1,4 @@
-(ns java-interop
+(ns bootcamp.java-interop
   (:import [javax.swing JFrame JComponent SwingUtilities]))
 
 ;;

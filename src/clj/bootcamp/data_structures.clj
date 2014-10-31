@@ -1,4 +1,4 @@
-(ns data-structures)
+(ns bootcamp.data-structures)
 
 ;;
 ;; Data-structures:

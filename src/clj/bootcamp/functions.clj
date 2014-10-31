@@ -1,4 +1,4 @@
-(ns functions
+(ns bootcamp.functions
   (:require [clojure.string :as s]
             [util.books :refer [books]]))
 

@@ -1,4 +1,4 @@
-(ns dev (:require [environ.core :refer [env]]
+(ns bootcamp.dev (:require [environ.core :refer [env]]
                   [cemerick.piggieback :as piggieback]
                   [weasel.repl.websocket :as weasel]
                   [leiningen.core.main :as lein]))

@@ -1,4 +1,4 @@
-(ns destructuring)
+(ns bootcamp.destructuring)
 
 ;; 
 ;; Vector destructuring:

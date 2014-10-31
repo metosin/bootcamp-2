@@ -1,4 +1,4 @@
-(ns mongo
+(ns bootcamp.mongo
   (:require [monger.core :as mg]
             [monger.collection :as mc]
             [schema.core :as s]

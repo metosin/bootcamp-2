@@ -1,4 +1,4 @@
-(ns util.books)
+(ns bootcamp.util.books)
 
 (def authors {:fogus     {:fname "Michael"    :lname "Fogus"}
               :houser    {:fname "Chris"      :lname "Houser"}

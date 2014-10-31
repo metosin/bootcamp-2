@@ -1,4 +1,4 @@
-(ns compojure
+(ns bootcamp.compojure
   (:require [ring.util.http-response :refer [ok not-found]]
             [schema.core :as sc]
             [compojure.api.sweet :refer :all]

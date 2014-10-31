@@ -1,4 +1,4 @@
-(ns basics)
+(ns bootcamp.basics)
 
 ;;
 ;; Clojure basics:

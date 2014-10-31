@@ -1,4 +1,4 @@
-(ns ring
+(ns bootcamp.ring
   (:require [org.httpkit.server :as http-kit]
             [ring.util.http-response :refer [ok content-type bad-request!] :as resp]
             [compojure.core :refer [context]]

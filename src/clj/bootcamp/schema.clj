@@ -1,4 +1,4 @@
-(ns schema
+(ns bootcamp.schema
   (:require [schema.core :as s]
             [schema.coerce :as sc]))
 

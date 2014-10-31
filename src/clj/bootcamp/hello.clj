@@ -1,4 +1,4 @@
-(ns hello
+(ns bootcamp.hello
   (:gen-class))
 
 (defn hello-world [your-name]

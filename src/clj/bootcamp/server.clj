@@ -1,4 +1,4 @@
-(ns server
+(ns bootcamp.server
   (:require [clojure.java.io :as io]
             [dev :refer [is-dev? browser-repl start-figwheel]]
             [compojure.api.sweet :refer :all]
