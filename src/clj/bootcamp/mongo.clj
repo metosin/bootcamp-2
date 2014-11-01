@@ -30,6 +30,13 @@
   (get authors key))
 
 (s/defn ^:always-validate insert-book :- MongoBook
+  "Insert a book into db.
+
+   Takes a normal book in, which has authors
+   as vector of keywords. Before book is saved to
+   db, authors vector should be denormalized,
+   that is, for each keyword a author should be
+   fetched using get-author function."
   [book :- Book]
   nil)
 
@@ -37,13 +44,20 @@
   ; Extra: Mongo looses some types (sets, keywords)
   ; remove following comment and use coercion to coerce data back to proper types
   ; :- MongoBook
+  "Retrieve a book from db"
   [id :- s/Str]
   nil)
 
 (defn get-books
+  "Get vector of all books."
   []
   ;(mc/find-maps db :books)
   books)
+
+(defn update-book
+  "Update books name and pages. Returns the updated book."
+  [id book]
+  nil)
 
 (comment
   (get-author :fogus)
@@ -51,5 +65,6 @@
   (def ^:private _id (:_id (insert-book (second books))))
   _id
   (get-book _id)
+  (get-books)
 
   (mc/drop db :books))

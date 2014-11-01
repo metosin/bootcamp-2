@@ -16,4 +16,14 @@
         (insert-book (first books))]
     (dissoc book :_id) => valid-book
 
-    (get-book _id) => book))
+    (fact get-book
+      (get-book _id) => truthy)
+
+    #_
+    (fact update-book
+      (update-book _id {:name "Foobar"
+                        :pages 1})
+      => (-> valid-book
+             (merge {:name "Foobar"
+                     :pages 1})
+             (dissoc :_id))))
