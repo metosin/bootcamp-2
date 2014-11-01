@@ -29,7 +29,7 @@ nil                      ;=> nil
 ; Keywords:
 ;
 
-; - Evaluate to themselves 
+; - Evaluate to themselves
 ; - Fast equality test
 ; - Are functions
 

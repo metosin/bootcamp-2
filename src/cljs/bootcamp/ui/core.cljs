@@ -3,7 +3,7 @@
   (:require [reagent.core :as reagent :refer [atom]]
             [cljs.core.async :refer [<!]]
             [cljs-http.client :as http]
-            [schema2 :as schema]))
+            [bootcamp.schema2 :as schema]))
 
 ; Feature ideas:
 ; - filter books?

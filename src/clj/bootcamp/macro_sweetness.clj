@@ -108,5 +108,5 @@
 ;         (.close resource))))
 
 ; Note:
-;   Clojure already has with-open that does this (better). 
+;   Clojure already has with-open that does this (better).
 ;   See http://clojure.github.io/clojure/clojure.core-api.html#clojure.core/with-open

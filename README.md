@@ -8,7 +8,7 @@
 $ lein pdo cljx auto, figwheel app
 # Start repl and http server
 $ lein repl
-server=> (start)
+bootcamp.server=> (start)
 ```
 
 ### Server

@@ -17,7 +17,7 @@
 
 (import '[java.util Random])
 
-; rarely used like this, typically imports are done in ns declaration, see this ns declaration. 
+; rarely used like this, typically imports are done in ns declaration, see this ns declaration.
 
 ; Instantiate Java objects:
 
@@ -85,7 +85,7 @@
     (.drawLine  0 height width 0)))
 
 ; proxy
-; - create Java objects that extends abstract classes and implement interfaces 
+; - create Java objects that extends abstract classes and implement interfaces
 
 (defn make-x-component [x-color]
   (proxy [JComponent] []
@@ -169,7 +169,7 @@
 ; Create Swing application that shows system time.
 
 ; Advanced, make clock update automatically:
-; Perhaps use something like this: 
+; Perhaps use something like this:
 ;
 ; (defn keep-invalidating [component]
 ;   (future

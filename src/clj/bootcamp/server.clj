@@ -1,18 +1,18 @@
 (ns bootcamp.server
-  (:require [clojure.java.io :as io]
-            [bootcamp.dev :refer [is-dev? browser-repl]]
+  (:require [bootcamp.dev :refer [is-dev? browser-repl]]
+            [bootcamp.mongo :as mongo]
+            [bootcamp.ring :as ring]
+            [bootcamp.schema :as schema]
+            [clojure.java.io :as io]
             [compojure.api.sweet :refer :all]
             [compojure.route :refer [resources]]
-            [ring.middleware.reload :as reload]
-            [ring.util.http-response :refer [ok]]
             [environ.core :refer [env]]
-            [org.httpkit.server :refer [run-server]]
             [hiccup.core :refer [html]]
             [hiccup.page :refer [html5 include-js include-css]]
-            [schema.core :as s]
-            bootcamp.schema
-            bootcamp.mongo
-            bootcamp.server)
+            [org.httpkit.server :refer [run-server]]
+            [ring.middleware.reload :as reload]
+            [ring.util.http-response :refer [ok]]
+            [schema.core :as s])
   (:gen-class))
 
 (declare index-page)
@@ -37,12 +37,12 @@
     :description "RESTful book api"
     (GET* "/books" []
       :summary "Retrieve all books"
-      (ok (bootcamp.mongo/get-books)))
+      (ok (mongo/get-books)))
 
     (POST* "/books" []
       :summary "Create a new book"
-      :body [book bootcamp.schema/Book]
-      (ok (bootcamp.mongo/insert-book book)))
+      :body [book schema/Book]
+      (ok (mongo/insert-book book)))
 
     (GET* "/books/:id" []
       :summary "Return a book"
@@ -62,9 +62,7 @@
     (reload/wrap-reload #'bootcamp.server/api)
     api))
 
-(defn start []
-  (ring/start-server http-handler))
-
+(def start (partial ring/start-server http-handler))
 (def stop ring/stop-server)
 
 (defn -main [& [port]]
@@ -81,4 +79,4 @@
        [:div#app.app-wrapper]
        (if is-dev? (include-js "/react/react.js" "/js/out/goog/base.js"))
        (include-js "/js/bootcamp.js")
-       (if is-dev? [:script {:type "text/javascript"} "goog.require('bootcamp.dev');"])])))
+       (if is-dev? [:script {:type "text/javascript"} "goog.require('bootcamp.ui.dev');"])])))

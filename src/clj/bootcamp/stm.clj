@@ -6,7 +6,7 @@
 ;   Object deref();
 ; }
 ;
-; things that implement IDeref: delay, future, promise, atom, agent, ref, var  
+; things that implement IDeref: delay, future, promise, atom, agent, ref, var
 
 ; use function clojure.core/deref to call IDeref.deref
 
@@ -20,7 +20,7 @@
 ;;
 ;; Concurrency:
 ;; ------------------------------
-;; - delay, future, promise 
+;; - delay, future, promise
 
 ; delay:
 ; ------
@@ -58,13 +58,13 @@
              :done)]
   (deref task))
 ;=> :done (after 100ms)
-  
+
 (let [task (future
              (Thread/sleep 100)
              :done)]
   (deref task 50 :timeout))
 ;=> :timeout (after 50ms)
-  
+
 ; promise:
 ; --------
 

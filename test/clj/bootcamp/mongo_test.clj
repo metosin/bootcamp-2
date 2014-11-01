@@ -26,4 +26,4 @@
       => (-> valid-book
              (merge {:name "Foobar"
                      :pages 1})
-             (dissoc :_id))))
+             (dissoc :_id)))))

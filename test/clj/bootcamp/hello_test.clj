@@ -5,5 +5,3 @@
 (fact
   (h/hello-world "foo") => "Hello, foo!"
   (h/hello-world "bar") => "Hello, bar!")
-
-

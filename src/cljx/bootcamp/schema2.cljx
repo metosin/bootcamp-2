@@ -1,4 +1,4 @@
-(ns schema2
+(ns bootcamp.schema2
   (:require [schema.core :as s :include-macros true]
             [schema.coerce :as sc]))
 

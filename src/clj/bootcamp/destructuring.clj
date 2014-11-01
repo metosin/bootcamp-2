@@ -1,6 +1,6 @@
 (ns bootcamp.destructuring)
 
-;; 
+;;
 ;; Vector destructuring:
 ;;
 

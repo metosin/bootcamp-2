@@ -1,4 +1,4 @@
-(ns bootcamp.dev
+(ns bootcamp.ui.dev
   (:require [bootcamp.core :as core]
             [figwheel.client :as figwheel :include-macros true]
             [cljs.core.async :refer [put!]]

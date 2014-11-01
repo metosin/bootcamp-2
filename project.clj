@@ -46,7 +46,7 @@
                                         :optimizations :none
                                         :pretty-print  true}}}}
 
-  :profiles {:dev {:repl-options {:init-ns server
+  :profiles {:dev {:repl-options {:init-ns bootcamp.server
                                   :nrepl-middleware [cemerick.piggieback/wrap-cljs-repl
                                                      cljx.repl-middleware/wrap-cljx]}
 
@@ -79,8 +79,8 @@
                                leiningen.cljsbuild]
                        :env {:is-dev false}
                        :omit-source :all
-                       :main hello
-                       :aot [hello server]
+                       :main bootcamp.hello
+                       :aot [bootcamp.hello bootcamp.server]
                        :cljsbuild {:builds {:app {:compiler {:optimizations :advanced
                                                              :pretty-print false}}}}}}
 

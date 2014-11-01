@@ -25,4 +25,5 @@
       (set-message! user message)
       (ok {:user user :message message}))))
 
-(start-server #'app)
+(comment
+  (start-server #'app))

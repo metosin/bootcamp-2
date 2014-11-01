@@ -96,14 +96,14 @@ person                               ;=> {:email "foo@bar.com", :name "<your nam
 ;
 
 ; mental map:
-;   Clojure: | Java:              
+;   Clojure: | Java:
 ;   -------- |----------------
 ;   list     | java.util.List
 ;   seq      | java.util.Iterator
 
 ; Convert to seq
 
-(seq [1 2 3])                    ;=> (1 2 3)       
+(seq [1 2 3])                    ;=> (1 2 3)
 (seq '(1 2 3))                   ;=> (1 2 3)
 (seq {:name "foo" :role "bar"})  ;=> ([:role "bar"] [:name "foo"])
 (seq #{\a \e \i \o \u \y})       ;=> (\a \e \i \o \u \y)
