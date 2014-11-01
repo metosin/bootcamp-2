@@ -6,16 +6,16 @@
 
 ; a schema can be
 
-; a Integer
+; a Class
 (s/check Long "foo")
+(s/check java.util.Date "bar")
+
 ; Validate throws
 (s/validate Long 5)
 
-; a Class
-(s/check java.util.Date "bar")
-
 ; a collection or map containing Schemas
 (s/check [String] ["a" 5 "b"])
+
 (s/check {:a Long
           :b String}
          {:a :error
@@ -28,7 +28,6 @@
 ; (def Inst
 ;   "The local representation of #inst ..."
 ;   #+clj java.util.Date #+cljs js/Date)
-
 
 ; predicates
 (s/check (s/pred (fn [v] (= v "foobar")) 'not-foobar) "barfoo")
@@ -54,13 +53,19 @@
 (defn str->keyword-matcher[schema]
   (if (= schema s/Keyword)
     (fn [v]
+      ; Fix this
       (if (string? v) v v))))
 
 (defn book-coercien-matcher [schema]
   (or
     (str->keyword-matcher schema)
-    ; [:foo] -> #{:foo}
+    ; Add another matcher here, to turn vectors into sets
     ))
 
+; FIXME: Not usable with mongo get-book
+; MongoBook
 (defn coerce-book [json-book]
   ((sc/coercer Book book-coercien-matcher) json-book))
+
+;; NOTE: e.g. schema.coerce has json-coercion-matcher which offers
+;; existing implementation for e.g. keyword and sets matchers
