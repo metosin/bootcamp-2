@@ -19,16 +19,16 @@
     (if (= (:status res) 200)
       (reset! books (:body res)))))
 
-(defn one-book [book]
+(defn one-book [i book]
   [:div
    [:h2 (:name book)]
-   [:p "something"]])
+   [:span (:pages book)]])
 
 (defn library []
   [:div
    [:h1 "Library!"]
-   (for [book @books]
-     ^{:key (:_id book)} [one-book book])])
+   (for [[i book] (zipmap (range) @books)]
+     ^{:key (:_id book)} [one-book i book])])
 
 (defn main []
   (reagent/render-component

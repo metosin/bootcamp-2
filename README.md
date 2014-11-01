@@ -4,8 +4,11 @@
 
 ### Dev
 ```
+# Start Cljx compiler and Figwheel (Cljs compiler + live reload)
+$ lein pdo cljx auto, figwheel app
+# Start repl and http server
 $ lein repl
-server=> (run)
+server=> (start)
 ```
 
 ### Server

@@ -20,9 +20,11 @@
     (s))
   (reset! server nil))
 
-(defn start-server [routes]
+(defn start-server [routes & [port]]
   (stop-server)
-  (reset! server (http-kit/run-server routes {:port 8080})))
+  (let [port (or port 8080)]
+    (println (str "Starting web server on port " port))
+    (reset! server (http-kit/run-server routes {:port port}))))
 
 ;;
 ;; Ring routing:

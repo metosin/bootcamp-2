@@ -1,6 +1,6 @@
 (ns bootcamp.server
   (:require [clojure.java.io :as io]
-            [bootcamp.dev :refer [is-dev? browser-repl start-figwheel]]
+            [bootcamp.dev :refer [is-dev? browser-repl]]
             [compojure.api.sweet :refer :all]
             [compojure.route :refer [resources]]
             [ring.middleware.reload :as reload]
@@ -9,7 +9,7 @@
             [org.httpkit.server :refer [run-server]]
             [hiccup.core :refer [html]]
             [hiccup.page :refer [html5 include-js include-css]]
-
+            [schema.core :as s]
             bootcamp.schema
             bootcamp.mongo
             bootcamp.server)
@@ -42,9 +42,17 @@
     (POST* "/books" []
       :summary "Create a new book"
       :body [book bootcamp.schema/Book]
-      (ok (bootcamp.mongo/insert-book {})))
+      (ok (bootcamp.mongo/insert-book book)))
 
-    ; Perhaps something else should be implemented also?
+    (GET* "/books/:id" []
+      :summary "Return a book"
+      :path-params [id :- s/Str]
+      (ok (mongo/get-book id)))
+
+    ; Implement book updating
+    ; - Use mongo/update-book
+    ; - Create a new schema as update-book only allows changing
+    ;   name or pages
     ))
 
 ;; Boring stuff
@@ -54,18 +62,13 @@
     (reload/wrap-reload #'bootcamp.server/api)
     api))
 
-(defn run [& [port]]
-  (defonce ^:private server
-    (do
-      (if is-dev? (start-figwheel))
-      (let [port (Integer. (or port (env :port) 3000))]
-        (println (str "Starting web server on port " port))
-        (run-server http-handler {:port port
-                                  :join? false}))))
-  server)
+(defn start []
+  (ring/start-server http-handler))
+
+(def stop ring/stop-server)
 
 (defn -main [& [port]]
-  (run port))
+  (start))
 
 (defn index-page []
   (html

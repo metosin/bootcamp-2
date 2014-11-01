@@ -29,8 +29,7 @@
 
                  ; For Cljs workflow: https://github.com/plexus/chestnut
                  [com.cemerick/piggieback "0.1.3"]
-                 [figwheel "0.1.4-SNAPSHOT"]
-                 [leiningen "2.5.0"]
+                 [figwheel "0.1.5-SNAPSHOT"]
                  [weasel "0.4.2"]]
 
   :plugins [[lein-environ "1.0.0"]]
@@ -51,12 +50,13 @@
                                   :nrepl-middleware [cemerick.piggieback/wrap-cljs-repl
                                                      cljx.repl-middleware/wrap-cljx]}
 
-                   :dependencies [[midje "1.5.1"]]
-                   :plugins [[lein-figwheel "0.1.4-SNAPSHOT"]
+                   :dependencies [[midje "1.6.3"]]
+                   :plugins [[lein-figwheel "0.1.5-SNAPSHOT"]
                              [lein-cljsbuild "1.0.3"]
                              [lein-deps-tree "0.1.2"]
                              [lein-midje "3.1.3"]
-                             [com.keminglabs/cljx "0.4.0" :exclusions [org.clojure/clojure]]]
+                             [com.keminglabs/cljx "0.4.0" :exclusions [org.clojure/clojure]]
+                             [lein-pdo "0.1.1"]]
 
                    :figwheel {:http-server-root "public"
                               :port 3449
