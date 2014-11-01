@@ -43,4 +43,5 @@
 
 (def app (frame-options (log-requests handle-request)))
 
-(start-server app)
+(comment
+  (start-server app))
