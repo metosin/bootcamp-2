@@ -2,6 +2,7 @@
   :dependencies [[clj-http "1.0.1"]
                  [clj-time "0.8.0"]
                  [com.novemberain/monger "2.0.0"]
+                 [enlive "1.1.5"]
                  [environ "1.0.0"]
                  [garden "1.2.5"]
                  [hiccup "1.0.5"]
