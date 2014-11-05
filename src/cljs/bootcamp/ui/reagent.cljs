@@ -15,9 +15,10 @@
 (go
   (let [{:keys [status body]} (<! (http/get "/api/books"))]
     (if (= status 200)
-      (reset! books body))))
+      (reset! books body)
+      (js/console.log "fail" status (pr-str body)))))
 
-(defn one-book [{:keys [_id title]}]
+(defn one-book [{:keys [_id title read?]}]
   [:div.book
    [:a {:href (str "#/book/" _id)} title]])
 
