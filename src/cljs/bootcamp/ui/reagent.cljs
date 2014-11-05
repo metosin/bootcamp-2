@@ -13,7 +13,7 @@
 (def books (atom []))
 
 (go
-  (let [{:keys [status body]} (<! (http/get "/books"))]
+  (let [{:keys [status body]} (<! (http/get "/api/books"))]
     (if (= status 200)
       (reset! books body))))
 

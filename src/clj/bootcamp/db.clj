@@ -2,7 +2,7 @@
   (:require [schema.core :as sc]
             [bootcamp.books :as books]))
 
-(require '[bootcamp.db.mem :as db])
+(require '[bootcamp.db.h2 :as db])
 
 (defn init-db []
   (db/init-db))

@@ -53,21 +53,20 @@
     (ok (index-page)))
 
   ; Apis
-  (context "/api/books" []
-    (swaggered "books"
-               :description "RESTful book api"
+  (swaggered "books" :description "RESTful book api"
+    (context "/api/books" []
       (GET* "/" []
         :summary "Retrieve all books"
         :return [books/Book]
         (ok (db/get-books)))
-      
       (GET* "/:book-id" []
         :summary "Return a book by ID"
+        :return books/Book
         :path-params [book-id :- sc/Str]
         (ok (db/get-book book-id)))
-    
       (POST* "/:book-id/set-read" []
         :summary "Mark book as read"
+        :return books/Book
         :path-params [book-id :- sc/Str]
         :body-params [read :- sc/Bool]
         (ok (db/set-read book-id read))))))
