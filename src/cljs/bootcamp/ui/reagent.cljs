@@ -1,4 +1,4 @@
-(ns bootcamp.core
+(ns bootcamp.ui.reagent
   (:require-macros [cljs.core.async.macros :refer [go]])
   (:require [reagent.core :as reagent :refer [atom]]
             [cljs.core.async :refer [<!]]
@@ -21,14 +21,15 @@
 
 (defn one-book [i book]
   [:div
-   [:h2 (:name book)]
+   [:h2 (str (:name book) " (" (:_id book) ")")]
    [:span (:pages book)]])
 
 (defn library []
   [:div
    [:h1 "Library!"]
-   (for [[i book] (zipmap (range) @books)]
-     ^{:key (:_id book)} [one-book i book])])
+   [:div
+    (for [[i book] (zipmap (range) @books)]
+      ^{:key (:_id book)} [one-book i book])]])
 
 (defn main []
   (reagent/render-component
