@@ -22,14 +22,13 @@
     [:head
      [:title "Books - Metosin Clojure Bootcamp"]
      [:meta {:charset "utf-8"}]
-     [:style
-      (css  {:pretty-print? is-dev?}
-            [[:body {:background-color 'gray
-                     :font-family "sans-serif"
-                     :color 'white}]
-             [:.books
-              [:a {:color 'white}
-               [:&:hover {:color (rgb 128 16 16)}]]]])]]
+     [:style (css  {:pretty-print? is-dev?}
+                   [[:body {:background-color 'gray
+                            :font-family "sans-serif"
+                            :color 'white}]
+                    [:.books
+                     [:a {:color 'white}
+                      [:&:hover {:color (rgb 128 16 16)}]]]])]]
     [:body
      [:div#app.app-wrapper]
      (if is-dev?
@@ -54,23 +53,24 @@
     (ok (index-page)))
 
   ; Apis
-  (swaggered "books"
-    :description "RESTful book api"
-    (GET* "/books" []
-      :summary "Retrieve all books"
-      :return [books/Book]
-      (ok (db/get-books)))
-
-    (GET* "/books/:book-name" []
-      :summary "Return a book by name"
-      :path-params [book-name :- sc/Str]
-      (ok (db/get-book book-name)))
+  (context "/api/books" []
+    (swaggered "books"
+               :description "RESTful book api"
+      (GET* "/" []
+        :summary "Retrieve all books"
+        :return [books/Book]
+        (ok (db/get-books)))
+      
+      (GET* "/:book-id" []
+        :summary "Return a book by ID"
+        :path-params [book-id :- sc/Str]
+        (ok (db/get-book book-id)))
     
-    (POST* "/set-read" []
-      :summary "Mark book as read"
-      :body-params [book-name :- sc/Str
-                    read?     :- sc/Bool]
-      (ok (db/set-read book-name read?)))))
+      (POST* "/:book-id/set-read" []
+        :summary "Mark book as read"
+        :path-params [book-id :- sc/Str]
+        :body-params [read :- sc/Bool]
+        (ok (db/set-read book-id read))))))
 
 ;; Boring stuff
 

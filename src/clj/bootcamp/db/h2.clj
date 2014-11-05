@@ -75,18 +75,21 @@
         (doseq [author authors]
           (jdbc/insert! tx :book_authors {:book_id id, :author_id (name author)}))))))
 
-(defn denormalize-book [{:keys [_id] :as book}]
-  (assoc book
-         :langs   (->> (jdbc/query db ["select lang_id as lang from book_langs where book_id = ?" _id])
-                       (map (comp keyword :lang))
-                       set)
-         :authors (->> (jdbc/query db [(str "select a.fname, a.lname "
-                                              "from authors a "
-                                              "inner join book_authors ba "
-                                                "on a._id = ba.author_id "
-                                              "where "
-                                                "ba.book_id = ?") _id])
-                       vec)))
+(defn denormalize-book
+  ([book]
+    (denormalize-book db book))
+  ([tx {:keys [_id] :as book}]
+    (assoc book
+           :langs   (->> (jdbc/query tx ["select lang_id as lang from book_langs where book_id = ?" _id])
+                         (map (comp keyword :lang))
+                         set)
+           :authors (->> (jdbc/query tx [(str "select a.fname, a.lname "
+                                                "from authors a "
+                                                "inner join book_authors ba "
+                                                  "on a._id = ba.author_id "
+                                                "where "
+                                                  "ba.book_id = ?") _id])
+                         vec))))
 
 (defn get-books
   ([]
@@ -94,7 +97,8 @@
       (get-books tx)))
   ([tx]
     (->> (jdbc/query tx "select _id, title, pages, read as `read?` from books")
-         (map denormalize-book))))
+         (map (partial denormalize-book tx))
+         (doall))))
 
 (defn get-book
   ([book-id]
@@ -103,7 +107,8 @@
   ([tx book-id]
     (->> (jdbc/query tx ["select _id, title, pages, read as `read?` from books where _id = ?" book-id])
          first
-         denormalize-book)))
+         (denormalize-book tx)
+         (doall))))
 
 (defn set-read
   ([book-id read?]

@@ -31,4 +31,5 @@
   (@db book-id))
 
 (defn set-read [book-id read?]
-  (swap! db update-in [book-id] assoc :read? read?))
+  (swap! db update-in [book-id] assoc :read? read?)
+  (get-book book-id))
