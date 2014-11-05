@@ -57,7 +57,6 @@
 ; Writing to and reading from channel:
 ;
 
-#_
 (let [c      (chan)
       reader (logger :reader)
       writer (logger :writer)]
@@ -170,7 +169,7 @@
         (recur))))
   (log "Done"))
 
-; Same, but slightly shorter:
+; or slightly better implementation:
 
 (defn read-until-closed!! [c log]
   (log "Reading until closed")
