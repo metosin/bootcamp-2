@@ -17,6 +17,7 @@ select lang_id as lang
   where book_id = :book_id
 
 -- name: query-book-authors
+-- Get authors by book ID
 select a.fname, a.lname
   from authors a
   inner join book_authors ba
