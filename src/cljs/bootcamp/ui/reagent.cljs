@@ -11,25 +11,22 @@
 ; - use schemas to check if book being edited is valid
 
 (def books (atom []))
-(comment
-  (reset! books []))
 
 (go
-  (let [res (<! (http/get "/books"))]
-    (if (= (:status res) 200)
-      (reset! books (:body res)))))
+  (let [{:keys [status body]} (<! (http/get "/books"))]
+    (if (= status 200)
+      (reset! books body))))
 
-(defn one-book [i book]
-  [:div
-   [:h2 (str (:name book) " (" (:_id book) ")")]
-   [:span (:pages book)]])
+(defn one-book [{:keys [_id title]}]
+  [:div.book
+   [:a {:href (str "#/book/" _id)} title]])
 
 (defn library []
   [:div
-   [:h1 "Library!"]
-   [:div
-    (for [[i book] (zipmap (range) @books)]
-      ^{:key (:_id book)} [one-book i book])]])
+   [:h1 "Library"]
+   [:div.books
+    (for [{:keys [_id] :as book} @books]
+      ^{:key _id} [one-book book])]])
 
 (defn main []
   (reagent/render-component
@@ -37,4 +34,4 @@
       [library])
     (.-body js/document)))
 
-(main)
+(-> js/window .-onload (set! main))

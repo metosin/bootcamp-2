@@ -15,7 +15,7 @@
 ; Moar
 #_
 (facts coerce-book
-  (coerce-book {:name    "The Joy of Clojure"
+  (coerce-book {:title   "The Joy of Clojure"
                 :langs   ["clojure"]
                 :pages   328
                 :authors ["fogus" "houser"]})

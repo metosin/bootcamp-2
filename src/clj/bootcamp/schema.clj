@@ -46,9 +46,9 @@
 (sc/defschema Author {:fname sc/Str
                       :lname sc/Str})
 
-(sc/defschema Book {:name   sc/Str
-                    :langs  #{sc/Keyword}
-                    :pages  sc/Int
+(sc/defschema Book {:title   sc/Str
+                    :langs   #{sc/Keyword}
+                    :pages   sc/Int
                     :authors [sc/Keyword]})
 
 ; More, coercions:

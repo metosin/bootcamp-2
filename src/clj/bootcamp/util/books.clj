@@ -12,27 +12,27 @@
               :abelson   {:fname "Harold"     :lname "Abelson"}
               :jsussman  {:fname "Julie"      :lname "Sussman"}})
 
-(def books [{:name    "The Joy of Clojure"
+(def books [{:title   "The Joy of Clojure"
              :langs   #{:clojure}
              :pages   328
              :authors [:fogus :houser]}
-            {:name    "Erlang Programming"
+            {:title   "Erlang Programming"
              :langs   #{:erlang}
              :pages   470
              :authors [:cesarini :thompson]}
-            {:name    "Clojure Data Analysis Cookbook"
+            {:title   "Clojure Data Analysis Cookbook"
              :langs   #{:clojure}
              :pages   326
              :authors [:rochester]}
-            {:name    "Programming Concurrency on the JVM"
+            {:title   "Programming Concurrency on the JVM"
              :langs   #{:java :ruby :groovy :scala :clojure}
              :pages   270
              :authors [:venkat]}
-            {:name    "The Little Schemer"
+            {:title   "The Little Schemer"
              :langs   #{:scheme}
              :pages   196
              :authors [:friedman :felleisen :sussman]}
-            {:name    "Types and Programming Languages"
+            {:title   "Types and Programming Languages"
              :langs   #{:haskel :java :fortran}
              :pages   623
              :authors [:abelson :sussman :jsussman]}])

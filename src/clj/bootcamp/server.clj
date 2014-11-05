@@ -1,21 +1,42 @@
 (ns bootcamp.server
   (:require [bootcamp.dev :refer [is-dev? browser-repl]]
-            [bootcamp.mongo :as mongo]
+            [bootcamp.db :as db]
             [bootcamp.ring :as ring]
-            [bootcamp.schema :as schema]
+            [bootcamp.books :as books]
             [clojure.java.io :as io]
             [compojure.api.sweet :refer :all]
             [compojure.route :refer [resources]]
             [environ.core :refer [env]]
             [hiccup.core :refer [html]]
             [hiccup.page :refer [html5 include-js include-css]]
+            [garden.core :refer [css]]
+            [garden.color :refer [rgb]]
             [org.httpkit.server :refer [run-server]]
             [ring.middleware.reload :as reload]
             [ring.util.http-response :refer [ok]]
-            [schema.core :as s])
+            [schema.core :as sc])
   (:gen-class))
 
-(declare index-page)
+(defn index-page []
+  (html5
+    [:head
+     [:title "Books - Metosin Clojure Bootcamp"]
+     [:meta {:charset "utf-8"}]
+     [:style
+      (css  {:pretty-print? is-dev?}
+            [[:body {:background-color 'gray
+                     :font-family "sans-serif"
+                     :color 'white}]
+             [:.books
+              [:a {:color 'white}
+               [:&:hover {:color (rgb 128 16 16)}]]]])]]
+    [:body
+     [:div#app.app-wrapper]
+     (if is-dev?
+       (include-js "/react/react.js" "/js/out/goog/base.js"))
+     (include-js "/js/bootcamp.js")
+     (if is-dev?
+       [:script {:type "text/javascript"} "goog.require('bootcamp.ui.dev');"])]))
 
 ;; The routes
 
@@ -37,46 +58,26 @@
     :description "RESTful book api"
     (GET* "/books" []
       :summary "Retrieve all books"
-      (ok (mongo/get-books)))
+      :return [books/Book]
+      (ok (db/get-books)))
 
-    (POST* "/books" []
-      :summary "Create a new book"
-      :body [book schema/Book]
-      (ok (mongo/insert-book book)))
-
-    (GET* "/books/:id" []
-      :summary "Return a book"
-      :path-params [id :- s/Str]
-      (ok (mongo/get-book id)))
-
-    ; Implement book updating
-    ; - Use mongo/update-book
-    ; - Create a new schema as update-book only allows changing
-    ;   name or pages
-    ))
+    (GET* "/books/:book-name" []
+      :summary "Return a book by name"
+      :path-params [book-name :- sc/Str]
+      (ok (db/get-book book-name)))
+    
+    (POST* "/set-read" []
+      :summary "Mark book as read"
+      :body-params [book-name :- sc/Str
+                    read?     :- sc/Bool]
+      (ok (db/set-read book-name read?)))))
 
 ;; Boring stuff
 
-(def http-handler
-  (if is-dev?
-    (reload/wrap-reload #'bootcamp.server/api)
-    api))
-
-(def start (partial ring/start-server http-handler))
+(def start (partial ring/start-server #'api))
 (def stop ring/stop-server)
 
-(defn -main [& [port]]
+(defn -main [& _]
   (start))
 
-(defn index-page []
-  (html
-    (html5
-      [:head
-       [:title "Hello World"]
-       [:meta {:charset "utf-8"}]
-       (include-css "css/style.css")]
-      [:body
-       [:div#app.app-wrapper]
-       (if is-dev? (include-js "/react/react.js" "/js/out/goog/base.js"))
-       (include-js "/js/bootcamp.js")
-       (if is-dev? [:script {:type "text/javascript"} "goog.require('bootcamp.ui.dev');"])])))
+
