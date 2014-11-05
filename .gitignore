@@ -1,5 +1,4 @@
 /target/
-generated
 pom.xml
 pom.xml.asc
 *.jar
@@ -8,8 +7,10 @@ pom.xml.asc
 /.nrepl-port
 ~$*
 .settings
-resources/public/js
+.classpath
+.project
 .idea
 bootcamp.iml
+resources/public/js
 src/clj/secret.clj
 .repl
