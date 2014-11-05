@@ -22,6 +22,7 @@
                  [ring-middleware-format "0.4.0"]
                  [ring-mock "0.1.5"]
                  [ring/ring-core "1.3.1"]
+                 [yesql "0.4.0"]
 
                  ; Frontend
                  [cljs-http "0.1.18"]
