@@ -6,7 +6,7 @@
 (defn next-id! []
   (str (swap! book-id inc)))
 
-(defn init-data []
+(defn init-db []
   (->> data/books
        (map (fn [{:keys [authors] :as book}]
               (assoc book :authors (map data/authors authors))))

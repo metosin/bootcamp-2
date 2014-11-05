@@ -4,6 +4,9 @@
 
 (require '[bootcamp.db.mem :as db])
 
+(defn init-db []
+  (db/init-db))
+
 (sc/defn ^:always-validate get-books :- [books/Book]
   []
   (db/get-books))
