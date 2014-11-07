@@ -280,12 +280,12 @@
       writer (logger :writer)]
   (go
     (reader "Received" (<! c))) ; <! will park the block
-  (writer "Sleeping for 1 sec...")
+  (writer "Sleeping for 0.1 sec...")
   (Thread/sleep 100)
   (>!! c :hello)) ; out side of go block use >!!
 
 ; stdout:
-;   0.000 [writer]: "Sleeping for 1 sec..."
+;   0.000 [writer]: "Sleeping for 0.1 sec..."
 ;   0.101 [reader]: "Received" :hello
 
 ; Timeout channel:
